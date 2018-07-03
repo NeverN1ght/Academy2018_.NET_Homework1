@@ -1,0 +1,11 @@
+C:\Users\NeverNight\source\repos\Academy2018_.NET_Homework1\Academy2018_.NET_Homework1\bin\Debug\netcoreapp2.0\Academy2018_.NET_Homework1.deps.json
+C:\Users\NeverNight\source\repos\Academy2018_.NET_Homework1\Academy2018_.NET_Homework1\bin\Debug\netcoreapp2.0\Academy2018_.NET_Homework1.runtimeconfig.json
+C:\Users\NeverNight\source\repos\Academy2018_.NET_Homework1\Academy2018_.NET_Homework1\bin\Debug\netcoreapp2.0\Academy2018_.NET_Homework1.runtimeconfig.dev.json
+C:\Users\NeverNight\source\repos\Academy2018_.NET_Homework1\Academy2018_.NET_Homework1\bin\Debug\netcoreapp2.0\Academy2018_.NET_Homework1.dll
+C:\Users\NeverNight\source\repos\Academy2018_.NET_Homework1\Academy2018_.NET_Homework1\bin\Debug\netcoreapp2.0\Academy2018_.NET_Homework1.pdb
+C:\Users\NeverNight\source\repos\Academy2018_.NET_Homework1\Academy2018_.NET_Homework1\obj\Debug\netcoreapp2.0\Academy2018_.NET_Homework1.csprojResolveAssemblyReference.cache
+C:\Users\NeverNight\source\repos\Academy2018_.NET_Homework1\Academy2018_.NET_Homework1\obj\Debug\netcoreapp2.0\Academy2018_.NET_Homework1.csproj.CoreCompileInputs.cache
+C:\Users\NeverNight\source\repos\Academy2018_.NET_Homework1\Academy2018_.NET_Homework1\obj\Debug\netcoreapp2.0\Academy2018_.NET_Homework1.AssemblyInfoInputs.cache
+C:\Users\NeverNight\source\repos\Academy2018_.NET_Homework1\Academy2018_.NET_Homework1\obj\Debug\netcoreapp2.0\Academy2018_.NET_Homework1.AssemblyInfo.cs
+C:\Users\NeverNight\source\repos\Academy2018_.NET_Homework1\Academy2018_.NET_Homework1\obj\Debug\netcoreapp2.0\Academy2018_.NET_Homework1.dll
+C:\Users\NeverNight\source\repos\Academy2018_.NET_Homework1\Academy2018_.NET_Homework1\obj\Debug\netcoreapp2.0\Academy2018_.NET_Homework1.pdb
