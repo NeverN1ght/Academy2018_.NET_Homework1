@@ -708,11 +708,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NeverNight\\source\\repos\\Academy2018_.NET_Homework1\\Academy2018_.NET_Homework1\\Academy2018_.NET_Homework1.csproj",
+      "projectUniqueName": "D:\\Academy\\Academy2018_.NET_Homework1\\Academy2018_.NET_Homework1\\Academy2018_.NET_Homework1.csproj",
       "projectName": "Academy2018_.NET_Homework1",
-      "projectPath": "C:\\Users\\NeverNight\\source\\repos\\Academy2018_.NET_Homework1\\Academy2018_.NET_Homework1\\Academy2018_.NET_Homework1.csproj",
+      "projectPath": "D:\\Academy\\Academy2018_.NET_Homework1\\Academy2018_.NET_Homework1\\Academy2018_.NET_Homework1.csproj",
       "packagesPath": "C:\\Users\\NeverNight\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NeverNight\\source\\repos\\Academy2018_.NET_Homework1\\Academy2018_.NET_Homework1\\obj\\",
+      "outputPath": "D:\\Academy\\Academy2018_.NET_Homework1\\Academy2018_.NET_Homework1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
