@@ -21,5 +21,7 @@ namespace Academy2018_.NET_Homework1.Entities
         public List<Post> Posts { get; set; }
 
         public List<Todo> Todos { get; set; }
+
+        public List<Comment> Comments { get; set; }
     }
 }
