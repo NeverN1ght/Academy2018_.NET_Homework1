@@ -14,75 +14,110 @@ namespace Academy2018_.NET_Homework1.Data
             _dataHierarchy = dataHierarchy;
         }
 
-        public void GetCommentsUnderUserPosts(int userId)
+        public List<(Post Post, int Comments)> GetCommentsUnderUserPosts(int userId)
         {
-            var result = _dataHierarchy
+            return _dataHierarchy
                 .Where(u => u.Id == userId)
                 .SelectMany(u => u.Posts)
-                .Select(x => (Title: x, Comments: x.Comments.Count));
-
-            foreach (var res in result)
-            {
-                Console.WriteLine($"'{res.Title}' has {res.Comments} comments");
-            }
+                .Select(p => (Post: p, CommentsCount: p.Comments.Count))
+                .ToList();
         }
 
-        public void GetCommentsWithSmallBody(int userId)
+        public List<Comment> GetCommentsWithSmallBody(int userId)
         {
-            var result = _dataHierarchy
+            return _dataHierarchy
                 .Where(u => u.Id == userId)
                 .SelectMany(u => u.Posts)
-                .SelectMany(c => c.Comments)
-                .Where(c => c.Body.Length < 50);
-
-            foreach (var res in result)
-            {
-                Console.WriteLine($"'{res.Body}' has {res.Body.Length} symbols");
-            }
+                .SelectMany(p => p.Comments)
+                .Where(c => c.Body.Length < 50)
+                .ToList();
         }
 
-        public void GetCompletedTodos(int userId)
+        public List<(int Id, string Name)> GetCompletedTodos(int userId)
         {
-            var result = _dataHierarchy
+            return _dataHierarchy
                 .Where(u => u.Id == userId)
                 .SelectMany(u => u.Todos)
-                .Where(t => t.IsComplete == true)
-                .Select(x => (Id: x.Id, Name: x.Name));
-
-            foreach (var res in result)
-            {
-                Console.WriteLine($"{res.Id} | '{res.Name}'");
-            }
+                .Where(t => t.IsComplete)
+                .Select(t => (Id: t.Id, Name: t.Name))
+                .ToList();
         }
 
-        public void GetUsersAscWithTodosDesc()
+        public List<User> GetUsersAscWithTodosDesc()
         {
-            var result = _dataHierarchy
+            return _dataHierarchy
                 .Select(u => u)
                 .OrderBy(u => u.Name)
-                .ThenByDescending(u => u.Todos.SelectMany(t => t.Name));
-
-            foreach (var res in result)
-            {
-                Console.WriteLine($"{res.Name} | '{res.Name}'");
-            }
+                .Select(u => new User {
+                    Id = u.Id,
+                    Address = u.Address,
+                    Comments = u.Comments,
+                    Posts = u.Posts,
+                    CreatedAt = u.CreatedAt,
+                    Name = u.Name,
+                    Avatar = u.Avatar,
+                    Email = u.Email,
+                    Todos = u.Todos
+                        .OrderByDescending(t => t.Name.Length)
+                        .ToList()
+                }).ToList();
         }
 
-        //public GetUserStructure(int userId)
-        //{
-        //    var result = _dataHierarchy.Where(u => u.Id == userId).Select(u => (
-        //        User: u,
-        //        LastPost: u.Posts.OrderBy(p => p.CreatedAt).First(),
-        //        LastPostCommentsCount: u.Posts.OrderBy(p => p.CreatedAt).First().Comments.Count,
-        //        UncompletedTodos: u.Todos.Count(t => t.IsComplete == false),
-        //        MostPopularPostByComments: u.Posts.Where(p => p.Comments.Max(c => c.Body.Length > 80)),
-        //        MostPopularPostByLikes: u.Posts.Select(p => p).Where(p => p.Likes)
-        //        ));
-        //}
+        public (
+            User User, 
+            Post LastPost, 
+            int LastPostCommentsCount, 
+            int UncompletedTodosCount, 
+            Post MostPopularPostByComments, 
+            Post MostPopularPostByLikes
+            ) GetUserStructure(int userId)
+        {
+            return _dataHierarchy
+                .Where(u => u.Id == userId)
+                .Select(u => (
+                User: u,
+                LastPost: u.Posts
+                    .OrderByDescending(p => p.CreatedAt)
+                    .First(),
+                LastPostCommentsCount: u.Posts
+                    .OrderByDescending(p => p.CreatedAt)
+                    .First().Comments.Count,
+                UncompletedTodosCount: u.Todos
+                    .Count(t => t.IsComplete == false),
+                MostPopularPostByComments: u.Posts
+                    .OrderByDescending(p => p.Comments.Count(c => c.Body.Length > 80))
+                    .First(),
+                MostPopularPostByLikes: u.Posts
+                    .OrderByDescending(p => p.Likes)
+                    .First()
+                )).Single();
+        }
 
-        //public GetPostStructure(int postId)
-        //{
-        //    var result = _dataHierarchy.Select(u => u).Where(p => p.Pos
-        //}
+        public (
+            Post Post, 
+            Comment LongestComment, 
+            Comment MostLikedComment, 
+            int CommentsCountUnderBadPost
+            ) GetPostStructure(int postId)
+        {
+            return _dataHierarchy
+                .SelectMany(u => u.Posts)
+                .Where(p => p.Id == postId)
+                .Select(p => (
+                    Post: p,
+                    LongestComment: p.Comments
+                        .Select(c => c)
+                        .OrderByDescending(c => c.Body.Length)
+                        .First(),
+                    MostLikedComment: p.Comments
+                        .Select(c => c)
+                        .OrderByDescending(c => c.Likes)
+                        .First(),
+                    CommentsCountUnderBadPost: p.Comments
+                        .Where(c => p.Likes == 0 || p.Body.Length < 80)
+                        .Select(c => c)
+                        .Count()                      
+                    )).Single();
+        }
     }
 }
